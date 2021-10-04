@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 
 require_once('Model/Article.php');
-require_once('Controller/EntityManager.php');
+require_once('Model/EntityManager.php');
 
 // instanciation d'une classe Article
 $article = new Article;

@@ -1,6 +1,6 @@
 <?php
 
-require_once("Model/Article.php");
+require_once("Article.php");
 
 
 class EntityManager
