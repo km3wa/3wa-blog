@@ -12,7 +12,7 @@ $article = new Article;
 //$article->setId('0');
 $article->setTitle("php avancé");
 $article->setContent("voici une leçon de php avancé");
-$article->setCreatedAt(new \DateTime('NOW'));
+//$article->setCreatedAt(new \DateTime('NOW'));
 $article->setStatus("draft");
 
 var_dump($article);

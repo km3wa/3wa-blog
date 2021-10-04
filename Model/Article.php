@@ -8,6 +8,10 @@ class Article{
     private $content;
     private $createdAt;
     private $status;
+
+    public function __construct(){
+        $this->createdAt = new \DateTime('NOW');
+    }
     
     // getters
     //function getId(){ return $this->id;}
