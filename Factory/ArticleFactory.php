@@ -8,4 +8,13 @@ class ArticleFactory{
         $article->setContent($content);
         return $article;
     }
+
+    public function createArticles($nb) : array{
+        $articles = [];
+        for ($i = 1; $i<=$nb; $i++){
+            $a = $this->createArticle("Article ".$i." sur 6", "content_test");
+            array_push($articles, $a);
+        };
+        return $articles;
+    }
 }
