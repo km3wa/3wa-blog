@@ -3,6 +3,10 @@
 
 
 class Article{
+    public const STATUS_DRAFT = "draft";
+    public const STATUS_ARCHIVED = "archived";
+    public const STATUS_PUBLISHED = "published";
+
     //private $id;
     private $title;
     private $content;
@@ -11,6 +15,7 @@ class Article{
 
     public function __construct(){
         $this->createdAt = new \DateTime('NOW');
+        $this->status = self::STATUS_DRAFT;
     }
     
     // getters
