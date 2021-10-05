@@ -1,9 +1,11 @@
 <?php
-require_once('../Factory/ArticleFactory.php');
-require_once('../View/createArticleView.php');
-require_once('../Model/EntityManager.php');
+define("ROOT", dirname(dirname(__FILE__).'/' ));
 
-if(($_POST) && ($_POST["title"]!=null) && ($_POST["content"]!=null)){
+require_once(ROOT . "/Factory/ArticleFactory.php");
+require_once(ROOT . "/View/createArticleView.php");
+require_once(ROOT . "/Model/EntityManager.php");
+
+if(!empty($_POST) && !empty($_POST["title"]) && !empty($_POST["content"])){
     $articleFactory = new ArticleFactory();
     $article = $articleFactory->createArticle($_POST["title"], $_POST["content"]);
 

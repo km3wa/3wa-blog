@@ -3,8 +3,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 
-require_once('../Factory/ArticleFactory.php');
-require_once('../Model/EntityManager.php');
+define("ROOT", dirname(dirname(__FILE__).'/'));
+
+require_once(ROOT . '/Factory/ArticleFactory.php');
+require_once(ROOT . '/Model/EntityManager.php');
 
 // instanciation d'une classe ArticleFactory
 $articleFactory = new ArticleFactory();

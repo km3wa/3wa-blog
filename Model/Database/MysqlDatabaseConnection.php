@@ -15,7 +15,7 @@ class MysqlDatabaseConnection implements DatabaseConnectionInterface{
     }
 
     
-    public function connect(){
+    public function connect() : ?PDO{
         try{
             $conn = new PDO("mysql:host=$this->host;dbname=$this->db", $this->username, $this->password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

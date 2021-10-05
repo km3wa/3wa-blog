@@ -3,5 +3,5 @@
 
 interface DatabaseConnectionInterface
 {
-    public function connect();
+    public function connect() : ?PDO;
 }
