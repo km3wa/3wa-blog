@@ -12,7 +12,7 @@ class ArticleFactory{
     public function createArticles($nb) : array{
         $articles = [];
         for ($i = 1; $i<=$nb; $i++){
-            $a = $this->createArticle("Article ".$i." sur 6", "content_test");
+            $a = $this->createArticle("Article ".$i." sur ".$nb, "content_test");
             array_push($articles, $a);
         };
         return $articles;

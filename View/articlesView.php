@@ -8,12 +8,16 @@
 </head>
 <body>
     <?php
-    include_once('../Controller/articles.php');
-
     foreach($articles as $article){
         echo("<h2>".$article->getTitle()."</h2>");
         echo("<div>".$article->getContent()."</div>");
     };
+
+
+
+
+
+
     ?>
 </body>
 </html>

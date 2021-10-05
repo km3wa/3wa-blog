@@ -8,7 +8,6 @@
 </head>
 <body>
     <?php
-    include_once('../Controller/index.php');
     foreach($articles as $article){
         echo("<h2>".$article->getTitle()."</h2>");
         echo("<div>".$article->getContent()."</div>");
