@@ -17,4 +17,8 @@ class ArticleFactory{
         };
         return $articles;
     }
+
+    public function getArticles() : array{
+        
+    }
 }

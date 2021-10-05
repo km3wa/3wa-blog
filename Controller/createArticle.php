@@ -1,5 +1,5 @@
 <?php
-define("ROOT", dirname(dirname(__FILE__).'/' ));
+require_once('../Config/config.php');
 
 require_once(ROOT . "/Factory/ArticleFactory.php");
 require_once(ROOT . "/View/createArticleView.php");
