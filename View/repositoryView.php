@@ -10,7 +10,8 @@
     <?php
     foreach($articles as $article){
         echo('<h2><a href="../Controller/article.php?id='.$article->getId().'">'.$article->getTitle().'</a></h2>');
-        echo('<article>".$article->getContent()."</article>');
+        echo('<article>'.$article->getContent().'</article>');
+        echo('<div><a href="../Controller/deleteArticle.php?id='.$article->getId().'">supprimer article '.$article->getId().'</a></div>');
     };
     ?>
 </body>

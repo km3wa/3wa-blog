@@ -8,10 +8,7 @@
 </head>
 <body>
     <?php
-    foreach($articles as $article){
-        echo('<h2>'.$article->getTitle().'</h2>');
-        echo('<article>'.$article->getContent().'</article>');
-    };
+        echo('<div>article supprimé. <a href="../Controller/repository.php">cliquez ici</a> pour revenir à la liste.</div>');
     ?>
 </body>
 </html>

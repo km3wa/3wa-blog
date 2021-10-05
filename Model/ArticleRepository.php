@@ -80,4 +80,9 @@ class ArticleRepository
         return $articles;
     }
 
+    public function deleteArticle(int $id) : void{
+        $sql = "DELETE FROM `article` WHERE `article`.`id` = $id";
+        $stmt = $this->dbConnexion->prepare($sql);
+        $stmt->execute();
+    }
 }
