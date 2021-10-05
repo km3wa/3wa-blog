@@ -11,6 +11,21 @@ class ArticleRepository
         $this->dbConnexion = $mysqlDbConnexion->connect();
     }
 
+    public function findOne($id) : Article{
+        $sql = "SELECT * FROM article WHERE id=$id" ;
+        $stmt = $this->dbConnexion->prepare($sql);
+        $stmt->execute();
+        $articlesDb = $stmt->fetchAll();
+
+        $articleEntity = new Article();
+        $articleEntity->setTitle($articlesDb[0]['title']);
+        $articleEntity->setStatus($articlesDb[0]['status']);
+        $articleEntity->setContent($articlesDb[0]['content']);
+        $articleEntity->setCreatedAt(new \DateTime($articlesDb[0]['created_at']));  
+        
+        return $articleEntity;
+    }
+
     // refacto en clean code
     public function findAll(): array
     {
@@ -34,14 +49,24 @@ class ArticleRepository
         return $articles;
     }
 
-    public function findLasts($nbArticles){
-        $sql = "SELECT * FROM `article` ORDER BY `created_at` DESC";
+    public function findLasts(int $nbArticles) : array{
+        $sql = "SELECT * FROM `article` ORDER BY `created_at` DESC LIMIT $nbArticles";
         $stmt = $this->dbConnexion->prepare($sql);
         $stmt->execute();
         $articlesDb = $stmt->fetchAll();
 
         $articles = [];
-
+        
+        foreach ($articlesDb as $article) {
+            $articleEntity = new Article();
+            $articleEntity->setTitle($article['title']);
+            $articleEntity->setStatus($article['status']);
+            $articleEntity->setContent($article['content']);
+            $articleEntity->setCreatedAt(new \DateTime($article['created_at']));
+            array_push($articles, $articleEntity);
+        }
+        
+        /* VERSION SANS REQUETE LIMIT
         for ($i = 0; $i<$nbArticles; $i++) {
             $articleEntity = new Article();
             $articleEntity->setTitle($articlesDb[$i]['title']);
@@ -49,7 +74,7 @@ class ArticleRepository
             $articleEntity->setContent($articlesDb[$i]['content']);
             $articleEntity->setCreatedAt(new \DateTime($articlesDb[$i]['created_at']));
             array_push($articles, $articleEntity);
-        }
+        }*/
 
         return $articles;
     }
