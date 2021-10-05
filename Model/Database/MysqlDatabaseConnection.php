@@ -1,6 +1,7 @@
 <?php
+include_once('DatabaseConnectionInterface.php');
 
-class MysqlDatabaseConnection{
+class MysqlDatabaseConnection implements DatabaseConnectionInterface{
     public function __construct() {
         $host = 'localhost';
         $username = 'root';
