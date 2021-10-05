@@ -19,14 +19,14 @@ class Article{
     }
     
     // getters
-    //function getId(){ return $this->id;}
+    public function getId() : int{ return $this->id;}
     public function getTitle() : string{ return $this->title;}
     public function getContent() : string{ return $this->content;}
     public function getCreatedAt() : \DateTime{ return $this->createdAt;}
     public function getStatus() : string{ return $this->status;}
     
     // setters
-    //function setId($id){ $this->id = $id;}
+    public function setId(int $id){ $this->id = $id;}
     public function setTitle(string $title) : void{ $this->title = $title;}
     public function setContent(string $content) : void{ $this->content = $content;}
     public function setCreatedAt(\DateTime $createdAt) : void{ $this->createdAt = $createdAt;}

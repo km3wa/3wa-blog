@@ -9,8 +9,8 @@
 <body>
     <?php
     foreach($articles as $article){
-        echo("<h2>".$article->getTitle()."</h2>");
-        echo("<article>".$article->getContent()."</article>");
+        echo('<h2>'.$article->getTitle().'</h2>');
+        echo('<article>".$article->getContent()."</article>');
     };
     ?>
 </body>

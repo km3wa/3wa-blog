@@ -15,13 +15,13 @@ class ArticleRepository
         $sql = "SELECT * FROM article WHERE id=$id" ;
         $stmt = $this->dbConnexion->prepare($sql);
         $stmt->execute();
-        $articlesDb = $stmt->fetchAll();
+        $article = $stmt->fetch();
 
         $articleEntity = new Article();
-        $articleEntity->setTitle($articlesDb[0]['title']);
-        $articleEntity->setStatus($articlesDb[0]['status']);
-        $articleEntity->setContent($articlesDb[0]['content']);
-        $articleEntity->setCreatedAt(new \DateTime($articlesDb[0]['created_at']));  
+        $articleEntity->setTitle($article['title']);
+        $articleEntity->setStatus($article['status']);
+        $articleEntity->setContent($article['content']);
+        $articleEntity->setCreatedAt(new \DateTime($article['created_at']));  
         
         return $articleEntity;
     }
@@ -39,6 +39,7 @@ class ArticleRepository
 
         foreach ($articlesDb as $article) {
             $articleEntity = new Article();
+            $articleEntity->setId($article['id']);
             $articleEntity->setTitle($article['title']);
             $articleEntity->setStatus($article['status']);
             $articleEntity->setContent($article['content']);

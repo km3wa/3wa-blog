@@ -8,9 +8,10 @@
 </head>
 <body>
     <?php
-    echo("<h2>".$article->getTitle()."</h2>");
-    echo("<article>".$article->getContent()."</article>");
-    echo("<div>".$article->getCreatedAt()->format('Y-m-d H:i:s')."</div>");
+    foreach($articles as $article){
+        echo('<h2><a href="../Controller/article.php?id='.$article->getId().'">'.$article->getTitle().'</a></h2>');
+        echo('<article>".$article->getContent()."</article>');
+    };
     ?>
 </body>
 </html>
