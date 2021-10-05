@@ -1,29 +1,19 @@
 <?php
 
 require_once("Article.php");
+require_once("Database/MysqlDatabaseConnection.php");
 
 
 class EntityManager
 {
 
-    private $dbConnexion;
+    private $db;
 
     // constructeur de la classe EntityManager
     //
     public function __construct() {
-        $host = 'localhost';
-        $username = 'root';
-        $password = '';
-        $db = '3wa_blog';
-
-        try{
-            $conn = new PDO("mysql:host=$host;dbname=$db", $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->dbConnexion = $conn;
-        } catch(PDOException $e){
-            echo "Erreur : " . $e->getMessage();
-            return null;
-        }
+        $db = new MysqlDatabaseConnection();
+        $dbConnexion = $db->connect();
     }
 
     public function persistArticle(Article $article)
