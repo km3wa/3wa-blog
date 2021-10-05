@@ -8,7 +8,7 @@ require_once('../Model/EntityManager.php');
 
 // instanciation d'une classe ArticleFactory
 $articleFactory = new ArticleFactory();
-$articles = $articleFactory->createArticles(6);
+//$articles = $articleFactory->createArticles(6);
 
 foreach($articles as $article){
     echo("<h2>".$article->getTitle()."</h2>");
