@@ -12,7 +12,8 @@ $articles = $articleFactory->createArticles(6);
 
 //var_dump($articles);
 
-//$entityManager = new EntityManager();
-//$entityManager->persistArticle($article);
+$article = $articleFactory->createArticle("test1", "test2");
+$entityManager = new EntityManager();
+$entityManager->persistArticle($article);
 
 include_once("../View/homeView.php");

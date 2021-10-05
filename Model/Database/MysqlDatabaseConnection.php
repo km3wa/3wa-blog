@@ -2,17 +2,22 @@
 include_once('DatabaseConnectionInterface.php');
 
 class MysqlDatabaseConnection implements DatabaseConnectionInterface{
+    private $host;
+    private $username;
+    private $password;
+    private $db;
+
     public function __construct() {
-        $host = 'localhost';
-        $username = 'root';
-        $password = '';
-        $db = '3wa_blog';
+        $this->host = 'localhost';
+        $this->username = 'root';
+        $this->password = '';
+        $this->db = '3wa_blog';
     }
 
     
     public function connect(){
         try{
-            $conn = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+            $conn = new PDO("mysql:host=$this->host;dbname=$this->db", $this->username, $this->password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
         } catch(PDOException $e){

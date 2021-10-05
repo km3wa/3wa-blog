@@ -8,12 +8,13 @@ class EntityManager
 {
 
     private $db;
+    private $dbConnexion;
 
     // constructeur de la classe EntityManager
     //
     public function __construct() {
-        $db = new MysqlDatabaseConnection();
-        $dbConnexion = $db->connect();
+        $this->db = new MysqlDatabaseConnection();
+        $this->dbConnexion = $this->db->connect();
     }
 
     public function persistArticle(Article $article)

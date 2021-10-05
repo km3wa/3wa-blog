@@ -3,6 +3,5 @@
 
 interface DatabaseConnectionInterface
 {
-
     public function connect();
 }
