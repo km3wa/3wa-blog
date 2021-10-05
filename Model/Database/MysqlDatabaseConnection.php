@@ -1,5 +1,5 @@
 <?php
-include_once('DatabaseConnectionInterface.php');
+include_once(ROOT . './Model/Database/DatabaseConnectionInterface.php');
 
 class MysqlDatabaseConnection implements DatabaseConnectionInterface{
     private $host;

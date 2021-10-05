@@ -1,5 +1,5 @@
 <?php
-require_once("../Model/Article.php");
+require_once(ROOT . "./Model/Article.php");
 
 class ArticleFactory{
     public function createArticle($title, $content) : Article{
