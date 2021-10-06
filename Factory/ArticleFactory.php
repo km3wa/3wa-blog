@@ -3,17 +3,24 @@ require_once(ROOT . "./Model/Article.php");
 
 class ArticleFactory{
     
-    public function makeArticleFromDb(array $article) : Article{
+    public function makeArticleFromDb(array $articleDb) : Article{
         $articleEntity = new Article();
-        $articleEntity->setId($article['id']);
-        $articleEntity->setTitle($article['title']);
-        $articleEntity->setStatus($article['status']);
-        $articleEntity->setContent($article['content']);
-        $articleEntity->setCreatedAt(new \DateTime($article['created_at']));
+        $articleEntity->setId($articleDb['id']);
+        $articleEntity->setTitle($articleDb['title']);
+        $articleEntity->setStatus($articleDb['status']);
+        $articleEntity->setContent($articleDb['content']);
+        $articleEntity->setCreatedAt(new \DateTime($articleDb['created_at']));
         return $articleEntity;
     }
 
-    /* --- LEGACY ---
+    public function makeArticleListFromDb(array $articlesDb) : array{
+        $articles = [];
+        foreach($articlesDb as $articleDb){
+            array_push($articles, self::makeArticleFromDb($articleDb));
+        }
+        return $articles;
+    }
+
     public function createArticle($title, $content) : Article{
         $article = new Article();
         $article->setTitle($title);
@@ -21,7 +28,7 @@ class ArticleFactory{
         return $article;
     }
 
-    public function createArticles($nb) : array{
+    /*public function createArticles($nb) : array{
         $articles = [];
         for ($i = 1; $i<=$nb; $i++){
             $a = $this->createArticle("Article ".$i." sur ".$nb, "content_test");

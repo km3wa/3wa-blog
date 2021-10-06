@@ -13,7 +13,7 @@ class ArticleRepository
         $this->articleFactory = new ArticleFactory();
     }
 
-    public function findOne($id) : Article{
+    public function findOne(int $id) : Article{
         $sql = "SELECT * FROM article WHERE id=$id" ;
         $stmt = $this->dbConnexion->prepare($sql);
         $stmt->execute();
@@ -33,11 +33,7 @@ class ArticleRepository
         $stmt->execute();
         $articlesDb = $stmt->fetchAll();
         
-        $articles = [];
-
-        foreach ($articlesDb as $article) {
-            array_push($articles, $this->articleFactory->makeArticleFromDb($article));
-        }
+        $articles = $this->articleFactory->makeArticleListFromDb($articlesDb);
 
         return $articles;
     }
@@ -48,11 +44,7 @@ class ArticleRepository
         $stmt->execute();
         $articlesDb = $stmt->fetchAll();
 
-        $articles = [];
-        
-        foreach ($articlesDb as $article) {
-            array_push($articles, $this->articleFactory->makeArticleFromDb($article));
-        }
+        $articles = $this->articleFactory->makeArticleListFromDb($articlesDb);
         
         /* VERSION SANS REQUETE LIMIT
         for ($i = 0; $i<$nbArticles; $i++) {
