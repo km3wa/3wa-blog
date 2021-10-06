@@ -2,6 +2,7 @@
 require_once('../Config/config.php');
 
 require_once(ROOT . './Model/ArticleRepository.php');
+require_once(ROOT . './Model/CategoryRepository.php');
 
 /*
 require_once(ROOT . './Factory/ArticleFactory.php');
@@ -20,5 +21,8 @@ $entityManager->persistArticle($article);
 
 $articleRepo = new ArticleRepository();
 $articles = $articleRepo->findLasts(3);
+
+$categoryRepo = new CategoryRepository();
+$categories = $categoryRepo->findLasts(3);
 
 include_once("../View/homeView.php");

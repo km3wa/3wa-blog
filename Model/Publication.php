@@ -1,8 +1,7 @@
 <?php
 
 
-
-abstract class Publishable{
+abstract class Publication{
     public const STATUS_DRAFT = "draft";
     public const STATUS_ARCHIVED = "archived";
     public const STATUS_PUBLISHED = "published";

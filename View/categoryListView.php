@@ -8,16 +8,10 @@
 </head>
 <body>
     <?php
-    echo('<h1>ARTICLES</h1>');
-    foreach($articles as $article){
-        echo('<h2>'.$article->getTitle().'</h2>');
-        echo('<article>'.$article->getContent().'</article>');
-    };
-
-    echo('<h1>CATEGORIES</h1>');
     foreach($categories as $category){
-        echo('<h2>'.$category->getTitle().'</h2>');
+        echo('<h2><a href="../Controller/category.php?id='.$category->getId().'">'.$category->getTitle().'</a></h2>');
         echo('<article>'.$category->getColor().'</article>');
+        echo('<div><a href="../Controller/deleteCategory.php?id='.$category->getId().'">supprimer catégorie '.$category->getId().'</a></div>');
     };
     ?>
 </body>

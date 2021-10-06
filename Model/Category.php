@@ -1,15 +1,11 @@
 <?php
-require_once(ROOT . './Model/Publishable.php');
+require_once(ROOT . './Model/Publication.php');
 
 
 
-class Category extends Publishable{
+class Category extends Publication{
     private $color;
 
-
-    public function __construct(){
-        parent::__construct();
-    }
     
     // getters
     public function getColor() : string{ return $this->color;}
