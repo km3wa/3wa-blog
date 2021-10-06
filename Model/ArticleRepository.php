@@ -1,6 +1,6 @@
 <?php
 require_once(ROOT . './Model/Database/MysqlDatabaseConnection.php');
-require_once(ROOT . './Factory/ArticleFactory.php');
+require_once(ROOT . './Model/Factory/ArticleFactory.php');
 
 class ArticleRepository
 {

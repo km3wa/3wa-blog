@@ -16,7 +16,7 @@ class ArticleFactory{
     public function makeArticleListFromDb(array $articlesDb) : array{
         $articles = [];
         foreach($articlesDb as $articleDb){
-            array_push($articles, self::makeArticleFromDb($articleDb));
+            array_push($articles, $this->makeArticleFromDb($articleDb));
         }
         return $articles;
     }

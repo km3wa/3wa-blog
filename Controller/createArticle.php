@@ -1,7 +1,7 @@
 <?php
 require_once('../Config/config.php');
 
-require_once(ROOT . "/Factory/ArticleFactory.php");
+require_once(ROOT . "/Model/Factory/ArticleFactory.php");
 require_once(ROOT . "/View/createArticleView.php");
 require_once(ROOT . "/Model/EntityManager.php");
 
