@@ -9,8 +9,7 @@
 <body>
     <?php
     foreach($categories as $category){
-        echo('<h2><a href="../Controller/category.php?id='.$category->getId().'">'.$category->getTitle().'</a></h2>');
-        echo('<article>'.$category->getColor().'</article>');
+        echo('<h2><a style="color:'.$category->getColor().'" href="../Controller/category.php?id='.$category->getId().'">'.$category->getTitle().'</a></h2>');
         echo('<div><a href="../Controller/deleteCategory.php?id='.$category->getId().'">supprimer catégorie '.$category->getId().'</a></div>');
     };
     ?>

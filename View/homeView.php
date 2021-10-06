@@ -16,8 +16,7 @@
 
     echo('<h1>CATEGORIES</h1>');
     foreach($categories as $category){
-        echo('<h2>'.$category->getTitle().'</h2>');
-        echo('<article>'.$category->getColor().'</article>');
+        echo('<h2 style="color:'.$category->getColor().'">'.$category->getTitle().'</h2>');
     };
     ?>
 </body>
