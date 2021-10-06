@@ -1,14 +1,16 @@
 <?php
 require_once(ROOT . './Model/Database/MysqlDatabaseConnection.php');
-require_once(ROOT . './Model/Article.php');
+require_once(ROOT . './Factory/ArticleFactory.php');
 
 class ArticleRepository
 {
     private /*?PDO */$dbConnexion; // typage de props en 7.4+ only
+    private $articleFactory;
 
     public function __construct() {
         $mysqlDbConnexion = new MysqlDatabaseConnection();
         $this->dbConnexion = $mysqlDbConnexion->connect();
+        $this->articleFactory = new ArticleFactory();
     }
 
     public function findOne($id) : Article{
@@ -17,11 +19,7 @@ class ArticleRepository
         $stmt->execute();
         $article = $stmt->fetch();
 
-        $articleEntity = new Article();
-        $articleEntity->setTitle($article['title']);
-        $articleEntity->setStatus($article['status']);
-        $articleEntity->setContent($article['content']);
-        $articleEntity->setCreatedAt(new \DateTime($article['created_at']));  
+        $articleEntity = $this->articleFactory->makeArticleFromDb($article);
         
         return $articleEntity;
     }
@@ -34,17 +32,11 @@ class ArticleRepository
         $stmt = $this->dbConnexion->prepare($sql);
         $stmt->execute();
         $articlesDb = $stmt->fetchAll();
-
+        
         $articles = [];
 
         foreach ($articlesDb as $article) {
-            $articleEntity = new Article();
-            $articleEntity->setId($article['id']);
-            $articleEntity->setTitle($article['title']);
-            $articleEntity->setStatus($article['status']);
-            $articleEntity->setContent($article['content']);
-            $articleEntity->setCreatedAt(new \DateTime($article['created_at']));
-            array_push($articles, $articleEntity);
+            array_push($articles, $this->articleFactory->makeArticleFromDb($article));
         }
 
         return $articles;
@@ -59,12 +51,7 @@ class ArticleRepository
         $articles = [];
         
         foreach ($articlesDb as $article) {
-            $articleEntity = new Article();
-            $articleEntity->setTitle($article['title']);
-            $articleEntity->setStatus($article['status']);
-            $articleEntity->setContent($article['content']);
-            $articleEntity->setCreatedAt(new \DateTime($article['created_at']));
-            array_push($articles, $articleEntity);
+            array_push($articles, $this->articleFactory->makeArticleFromDb($article));
         }
         
         /* VERSION SANS REQUETE LIMIT

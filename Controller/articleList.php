@@ -20,4 +20,4 @@ $entityManager->persistArticle($article);
 $articleRepo = new ArticleRepository();
 $articles = $articleRepo->findAll();
 
-include_once("../View/repositoryView.php");
+include_once("../View/articleListView.php");

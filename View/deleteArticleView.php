@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-        echo('<div>article supprimé. <a href="../Controller/repository.php">cliquez ici</a> pour revenir à la liste.</div>');
+        echo('<div>article supprimé. <a href="../Controller/articleList.php">cliquez ici</a> pour revenir à la liste.</div>');
     ?>
 </body>
 </html>

@@ -7,7 +7,7 @@ class Article{
     public const STATUS_ARCHIVED = "archived";
     public const STATUS_PUBLISHED = "published";
 
-    //private $id;
+    private $id;
     private $title;
     private $content;
     private $createdAt;
@@ -19,7 +19,7 @@ class Article{
     }
     
     // getters
-    public function getId() : int{ return $this->id;}
+    public function getId() : ?int{ return $this->id;}
     public function getTitle() : string{ return $this->title;}
     public function getContent() : string{ return $this->content;}
     public function getCreatedAt() : \DateTime{ return $this->createdAt;}
