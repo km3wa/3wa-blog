@@ -3,10 +3,12 @@
 require_once(ROOT . "./Model/Article.php");
 require_once(ROOT . "./Model/Database/MysqlDatabaseConnection.php");
 require_once(ROOT . "./Model/PasswordHash.php");
+require_once(ROOT . "./Model/Mail.php");
 
 class EntityManager
 {
     use PasswordHash;
+    use Mail;
 
     private $db;
     private $dbConnexion;
@@ -103,6 +105,7 @@ class EntityManager
             "created_at" => $user->getCreatedAt()->format('Y-m-d H:i:s')
         ));
 
+        $this->sendMail($user->getEmail());
     }
 
 }
