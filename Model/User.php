@@ -20,11 +20,5 @@ class User{
     public function setUsername(string $username){ $this->username = $username;}
     public function setEmail(string $email) : void{ $this->email = $email;}
     public function setCreatedAt(\DateTime $createdAt) : void{ $this->createdAt = $createdAt;}
-    
-    public function setPassword(string $pw) : void{
-        $options = [
-            'cost' => 12,
-        ];
-        $this->pw = password_hash($pw,PASSWORD_BCRYPT,$options);
-    }
+    public function setPassword(string $pw) : void{ $this->pw = $pw;}
 }

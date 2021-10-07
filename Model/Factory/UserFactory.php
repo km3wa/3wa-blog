@@ -8,7 +8,7 @@ class UserFactory{
     public function createUser($username, $email, $pw) : User{
         $user = new User();
         $user->setUsername($username);
-        $user->setEmail($pw);
+        $user->setEmail($email);
         $user->setPassword($pw);
         return $user;
     }

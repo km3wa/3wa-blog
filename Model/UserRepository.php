@@ -1,9 +1,12 @@
 <?php
 require_once(ROOT . './Model/Database/MysqlDatabaseConnection.php');
 require_once(ROOT . './Model/Factory/UserFactory.php');
+require_once(ROOT . './Model/PasswordCheck.php');
 
 class UserRepository
 {
+    use PasswordCheck;
+
     private /*?PDO */$dbConnexion; // typage de props en 7.4+ only
     private $userFactory;
 
@@ -21,11 +24,7 @@ class UserRepository
 
         var_dump($user);
 
-        
-        if(password_verify($pw, $user[4])){
-            return true;
-        }
-        else return false;
+        return $this->pwCheck($pw, $user['pw']);
     }
 
     // refacto en clean code

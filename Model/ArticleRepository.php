@@ -1,67 +1,36 @@
 <?php
 require_once(ROOT . './Model/Database/MysqlDatabaseConnection.php');
-require_once(ROOT . './Model/Factory/ArticleFactory.php');
+require_once(ROOT . './Model/Factory/articleFactory.php');
+require_once(ROOT . './Model/PublicationRepository.php');
 
-class ArticleRepository
+class articleRepository extends PublicationRepository
 {
-    private /*?PDO */$dbConnexion; // typage de props en 7.4+ only
     private $articleFactory;
 
-    public function __construct() {
-        $mysqlDbConnexion = new MysqlDatabaseConnection();
-        $this->dbConnexion = $mysqlDbConnexion->connect();
-        $this->articleFactory = new ArticleFactory();
+    public function __construct(){
+        parent::__construct();
+        $this->publicationType = "article";
+        $this->articleFactory = new ArticleFactory;
     }
 
-    public function findOne(int $id) : Article{
-        $sql = "SELECT * FROM article WHERE id=$id" ;
-        $stmt = $this->dbConnexion->prepare($sql);
-        $stmt->execute();
-        $article = $stmt->fetch();
-
-        $articleEntity = $this->articleFactory->makeArticleFromDb($article);
-        
-        return $articleEntity;
+    public function findOne(int $id) : article{
+        $articleDb = parent::fetchOne($id, $this->publicationType);
+        return $this->articleFactory->makeArticleFromDb($articleDb);
     }
 
     // refacto en clean code
     public function findAll(): array
     {
-        $sql = "SELECT * FROM article";
-
-        $stmt = $this->dbConnexion->prepare($sql);
-        $stmt->execute();
-        $articlesDb = $stmt->fetchAll();
-        
-        $articles = $this->articleFactory->makeArticleListFromDb($articlesDb);
-
-        return $articles;
+        $articlesDb = parent::fetchAll($this->publicationType);        
+        return $this->articleFactory->makeArticleListFromDb($articlesDb);
     }
 
-    public function findLasts(int $nbArticles) : array{
-        $sql = "SELECT * FROM `article` ORDER BY `created_at` DESC LIMIT $nbArticles";
-        $stmt = $this->dbConnexion->prepare($sql);
-        $stmt->execute();
-        $articlesDb = $stmt->fetchAll();
-
-        $articles = $this->articleFactory->makeArticleListFromDb($articlesDb);
-        
-        /* VERSION SANS REQUETE LIMIT
-        for ($i = 0; $i<$nbArticles; $i++) {
-            $articleEntity = new Article();
-            $articleEntity->setTitle($articlesDb[$i]['title']);
-            $articleEntity->setStatus($articlesDb[$i]['status']);
-            $articleEntity->setContent($articlesDb[$i]['content']);
-            $articleEntity->setCreatedAt(new \DateTime($articlesDb[$i]['created_at']));
-            array_push($articles, $articleEntity);
-        }*/
-
-        return $articles;
+    public function findLasts(int $nbarticles) : array{
+        $articlesDb = parent::fetchLasts($nbarticles, $this->publicationType);
+        return $this->articleFactory->makeArticleListFromDb($articlesDb);
     }
 
-    public function deleteArticle(int $id) : void{
-        $sql = "DELETE FROM `article` WHERE `article`.`id` = $id";
-        $stmt = $this->dbConnexion->prepare($sql);
-        $stmt->execute();
+    public function deleteArticle (int $id){
+        parent::deletePublication($id, $this->publicationType);
     }
 }

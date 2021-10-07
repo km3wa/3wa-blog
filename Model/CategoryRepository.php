@@ -1,57 +1,36 @@
 <?php
 require_once(ROOT . './Model/Database/MysqlDatabaseConnection.php');
 require_once(ROOT . './Model/Factory/CategoryFactory.php');
+require_once(ROOT . './Model/PublicationRepository.php');
 
-class CategoryRepository
+class CategoryRepository extends PublicationRepository
 {
-    private /*?PDO */$dbConnexion; // typage de props en 7.4+ only
     private $categoryFactory;
 
-    public function __construct() {
-        $mysqlDbConnexion = new MysqlDatabaseConnection();
-        $this->dbConnexion = $mysqlDbConnexion->connect();
-        $this->categoryFactory = new CategoryFactory();
+    public function __construct(){
+        parent::__construct();
+        $this->publicationType = "category";
+        $this->categoryFactory = new CategoryFactory;
     }
 
     public function findOne(int $id) : Category{
-        $sql = "SELECT * FROM Category WHERE id=$id" ;
-        $stmt = $this->dbConnexion->prepare($sql);
-        $stmt->execute();
-        $category = $stmt->fetch();
-
-        $categoryEntity = $this->categoryFactory->makeCategoryFromDb($category);
-        
-        return $categoryEntity;
+        $categoryDb = parent::fetchOne($id, $this->publicationType);
+        return $this->categoryFactory->makeCategoryFromDb($categoryDb);
     }
 
     // refacto en clean code
     public function findAll(): array
     {
-        $sql = "SELECT * FROM category";
-
-        $stmt = $this->dbConnexion->prepare($sql);
-        $stmt->execute();
-        $categoriesDb = $stmt->fetchAll();
-        
-        $categories = $this->categoryFactory->makeCategoryListFromDb($categoriesDb);
-
-        return $categories;
+        $categoriesDb = parent::fetchAll($this->publicationType);        
+        return $this->categoryFactory->makeCategoryListFromDb($categoriesDb);
     }
 
     public function findLasts(int $nbCategories) : array{
-        $sql = "SELECT * FROM `category` ORDER BY `created_at` DESC LIMIT $nbCategories";
-        $stmt = $this->dbConnexion->prepare($sql);
-        $stmt->execute();
-        $categoriesDb = $stmt->fetchAll();
-
-        $categories = $this->categoryFactory->makeCategoryListFromDb($categoriesDb);
-
-        return $categories;
+        $categoriesDb = parent::fetchLasts($nbCategories, $this->publicationType);
+        return $this->categoryFactory->makeCategoryListFromDb($categoriesDb);
     }
 
-    public function deleteCategory(int $id) : void{
-        $sql = "DELETE FROM `category` WHERE `category`.`id` = $id";
-        $stmt = $this->dbConnexion->prepare($sql);
-        $stmt->execute();
+    public function deleteCategory (int $id){
+        parent::deletePublication($id, $this->publicationType);
     }
 }

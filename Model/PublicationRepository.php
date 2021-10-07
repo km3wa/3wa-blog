@@ -3,7 +3,7 @@ require_once(ROOT . './Model/Database/MysqlDatabaseConnection.php');
 
 abstract class PublicationRepository
 {
-    protected $publicationType;
+    protected $fromDb;
     private /*?PDO */$dbConnexion; // typage de props en 7.4+ only
 
     public function __construct() {
@@ -11,32 +11,34 @@ abstract class PublicationRepository
         $this->dbConnexion = $mysqlDbConnexion->connect();
     }
 
-    public function findOne(int $id){
-        $sql = "SELECT * FROM $this->publicationType WHERE id=$id" ;
+    public function fetchOne(int $id, string $type){
+        $sql = "SELECT * FROM $type WHERE id=$id" ;
         $stmt = $this->dbConnexion->prepare($sql);
         $stmt->execute();
-        $publicationDb = $stmt->fetch();
+        return $stmt->fetch();
     }
 
     // refacto en clean code
-    public function findAll()
+    public function fetchAll(string $type)
     {
-        $sql = "SELECT * FROM `$this->publicationType`";
+        $sql = "SELECT * FROM `$type`";
 
         $stmt = $this->dbConnexion->prepare($sql);
         $stmt->execute();
-        $publicationsDb = $stmt->fetchAll();
+        return $stmt->fetchAll();
     }
 
-    public function findLasts(int $nbPublications){
-        $sql = "SELECT * FROM `$this->publicationType` ORDER BY `created_at` DESC LIMIT $nbPublications";
+    public function fetchLasts(int $nbPublications, string $type){
+        $sql = "SELECT * FROM `$type` ORDER BY `created_at` DESC LIMIT $nbPublications";
+
         $stmt = $this->dbConnexion->prepare($sql);
         $stmt->execute();
-        $publicationsDb = $stmt->fetchAll();
+        return $stmt->fetchAll();
     }
 
-    public function deletePublication(int $id) : void{
-        $sql = "DELETE FROM `$this->publicationType` WHERE `$this->publicationType`.`id` = $id";
+    public function deletePublication(int $id, string $type) : void{
+        $sql = "DELETE FROM `$type` WHERE `$type`.`id` = $id";
+        
         $stmt = $this->dbConnexion->prepare($sql);
         $stmt->execute();
     }

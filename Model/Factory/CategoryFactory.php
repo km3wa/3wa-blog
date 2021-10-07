@@ -4,7 +4,7 @@ require_once(ROOT . "./Model/Category.php");
 class CategoryFactory{
     
     public function makeCategoryFromDb(array $categoryDb) : Category{
-        $categoryEntity = new category();
+        $categoryEntity = new Category();
         $categoryEntity->setId($categoryDb['id']);
         $categoryEntity->setTitle($categoryDb['title']);
         $categoryEntity->setStatus($categoryDb['status']);
@@ -21,8 +21,8 @@ class CategoryFactory{
         return $categories;
     }
 
-    public function createCategory($title, $color) : category{
-        $category = new category();
+    public function createCategory($title, $color) : Category{
+        $category = new Category();
         $category->setTitle($title);
         $category->setColor($color);
         return $category;

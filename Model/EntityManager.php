@@ -2,10 +2,11 @@
 
 require_once(ROOT . "./Model/Article.php");
 require_once(ROOT . "./Model/Database/MysqlDatabaseConnection.php");
-
+require_once(ROOT . "./Model/PasswordHash.php");
 
 class EntityManager
 {
+    use PasswordHash;
 
     private $db;
     private $dbConnexion;
@@ -98,7 +99,7 @@ class EntityManager
         $req->execute(array(
             "username" => $user->getUsername(),
             "email" => $user->getEmail(),
-            "pw" => $user->getPassword(),
+            "pw" => $this->pwHash($user->getPassword()),
             "created_at" => $user->getCreatedAt()->format('Y-m-d H:i:s')
         ));
 
