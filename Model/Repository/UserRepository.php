@@ -1,7 +1,7 @@
 <?php
 require_once(ROOT . './Model/Database/MysqlDatabaseConnection.php');
 require_once(ROOT . './Model/Factory/UserFactory.php');
-require_once(ROOT . './Model/PasswordCheck.php');
+require_once(ROOT . './Service/PasswordCheck.php');
 
 class UserRepository
 {

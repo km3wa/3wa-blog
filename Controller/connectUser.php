@@ -1,7 +1,7 @@
 <?php
 require_once('../Config/config.php');
 
-require_once(ROOT . "/Model/UserRepository.php");
+require_once(ROOT . "/Model/Repository/UserRepository.php");
 require_once(ROOT . "/View/connectUserView.php");
 
 

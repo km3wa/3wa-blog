@@ -1,7 +1,7 @@
 <?php  
 require_once('../Config/config.php');
 
-require_once(ROOT . './Model/ArticleRepository.php');
+require_once(ROOT . './Model/Repository/ArticleRepository.php');
 
 /* LEGACY STUFF
 require_once(ROOT . './Factory/ArticleFactory.php');

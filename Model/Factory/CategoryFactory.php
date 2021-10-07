@@ -1,5 +1,5 @@
 <?php
-require_once(ROOT . "./Model/Category.php");
+require_once(ROOT . "./Model/Entity/Category.php");
 
 class CategoryFactory{
     

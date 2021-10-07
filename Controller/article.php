@@ -1,16 +1,23 @@
 <?php
 require_once('../Config/config.php');
-require_once(ROOT . './Model/ArticleRepository.php');
 
-$articleRepo = new ArticleRepository();
-if (!empty($_GET['id'])){
-    $article = $articleRepo->findOne($_GET['id']);
+require_once(ROOT . "/Model/Repository/ArticleRepository.php");
+require_once(ROOT . "/Service/ArticleScoreCalculator.php");
+require_once(ROOT . "/Service/ArticleLengthScoreCalculator.php");
+require_once(ROOT . "/Service/PublicationAgeScoreCalculator.php");
+
+$id = $_GET['id'];
+
+if ($id) {
+    $articleRepository = new ArticleRepository();
+    $article = $articleRepository->findOne($id);
+
+    $scoresCalculatorsClasses = [];
+    $scoresCalculatorsClasses[] = new ArticleLengthScoreCalculator();
+    $scoresCalculatorsClasses[] = new PublicationAgeScoreCalculator();
+
+    $articleScoreCalculator = new ArticleScoreCalculator();
+    $articleScore = $articleScoreCalculator->calculateScore($article, $scoresCalculatorsClasses);
+
+    require_once(ROOT . '/View/articleView.php');
 }
-/* je trouve comment faire + tard
-else {
-    $articles = $articleRepo->findAll();
-}*/
-else throw new Exception("-- liens articles coming soon --", 1);
-
-
-include_once(ROOT . "./View/articleView.php");

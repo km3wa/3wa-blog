@@ -1,7 +1,7 @@
 <?php
 require_once(ROOT . './Model/Database/MysqlDatabaseConnection.php');
 require_once(ROOT . './Model/Factory/CategoryFactory.php');
-require_once(ROOT . './Model/PublicationRepository.php');
+require_once(ROOT . './Model/Repository/PublicationRepository.php');
 
 class CategoryRepository extends PublicationRepository
 {

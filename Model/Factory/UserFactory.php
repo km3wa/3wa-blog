@@ -1,5 +1,5 @@
 <?php
-require_once(ROOT . "./Model/User.php");
+require_once(ROOT . "./Model/Entity/User.php");
 
 class UserFactory{
 
