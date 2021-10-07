@@ -1,11 +1,12 @@
 <?php
 
 require_once(ROOT . "/Model/Entity/Article.php");
+require_once(ROOT . "/Service/CriteriaArticleScoreInterface.php");
 
-class PublicationAgeScoreCalculator{
-    function calculateScore(Article $article) : float{
+class PublicationAgeScoreCalculator implements CriteriaArticleScoreInterface{
+    public function calculateScore(Article $article) : float{
         $articleScore = 0;
-        
+
         $articleDate = $article->getCreatedAt();
         $dateNow = new \DateTime('NOW');
 

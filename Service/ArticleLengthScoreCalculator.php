@@ -1,9 +1,10 @@
 <?php
 
 require_once(ROOT . "/Model/Entity/Article.php");
+require_once(ROOT . "/Service/CriteriaArticleScoreInterface.php");
 
-class ArticleLengthScoreCalculator{
-    function calculateScore(Article $article) : float{
+class ArticleLengthScoreCalculator implements CriteriaArticleScoreInterface{
+    public function calculateScore(Article $article) : float{
         $articleScore = 0;
 
         $lengthContent = strlen($article->getContent());
