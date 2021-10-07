@@ -30,7 +30,11 @@ class CategoryRepository extends PublicationRepository
         return $this->categoryFactory->makeCategoryListFromDb($categoriesDb);
     }
 
-    public function deleteCategory (int $id){
+    /*public function deleteCategory (int $id){
         parent::deletePublication($id, $this->publicationType);
+    }*/
+
+    public function deleteCategory(Category $category){
+        parent::deletePublication($category);
     }
 }

@@ -5,9 +5,11 @@ class User{
     private $email;
     private $pw;
     private $createdAt;
+    private $tableName;
 
     public function __construct(){
         $this->createdAt = new \DateTime('NOW');
+        $this->tableName = "users";
     }
     
     // getters
@@ -15,6 +17,7 @@ class User{
     public function getEmail() : string{ return $this->email;}
     public function getCreatedAt() : \DateTime{ return $this->createdAt;}
     public function getPassword() : string{ return $this->pw;}
+    public function getTableName(): string{ return $this->tableName;}
     
     // setters
     public function setUsername(string $username){ $this->username = $username;}

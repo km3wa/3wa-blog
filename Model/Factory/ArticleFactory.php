@@ -10,6 +10,7 @@ class ArticleFactory{
         $articleEntity->setStatus($articleDb['status']);
         $articleEntity->setContent($articleDb['content']);
         $articleEntity->setCreatedAt(new \DateTime($articleDb['created_at']));
+        $articleEntity->setTableName("article");
         return $articleEntity;
     }
 

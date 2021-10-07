@@ -5,7 +5,7 @@ require_once(ROOT . './Model/Repository/CategoryRepository.php');
 
 if (!empty($_GET['id'])){
     $categoryRepo = new CategoryRepository();
-    $categoryRepo->deleteCategory($_GET['id']);
+    $categoryRepo->deleteCategory($categoryRepo->findOne($_GET['id']));
 };
 
 include_once(ROOT . './View/deleteCategoryView.php');

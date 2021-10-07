@@ -36,10 +36,17 @@ abstract class PublicationRepository
         return $stmt->fetchAll();
     }
 
-    public function deletePublication(int $id, string $type) : void{
+    /*public function deletePublication(int $id, string $type) : void{
         $sql = "DELETE FROM `$type` WHERE `$type`.`id` = $id";
         
         $stmt = $this->dbConnexion->prepare($sql);
         $stmt->execute();
+    }*/
+
+    public function deletePublication(EntityInterface $entity): void
+    {
+        $sql = "DELETE FROM " . $entity->getTableName() . " where id=:id;";
+        $stmt = $this->dbConnexion->prepare($sql);
+        $stmt->execute(['id' => $entity->getId()]);
     }
 }

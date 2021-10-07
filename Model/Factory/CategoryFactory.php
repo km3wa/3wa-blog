@@ -10,6 +10,7 @@ class CategoryFactory{
         $categoryEntity->setStatus($categoryDb['status']);
         $categoryEntity->setColor($categoryDb['color']);
         $categoryEntity->setCreatedAt(new \DateTime($categoryDb['created_at']));
+        $categoryEntity->setTableName("category");
         return $categoryEntity;
     }
 

@@ -9,6 +9,12 @@ class Article extends Publication{
     public function __construct(){
         parent::__construct();
     }*/
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->tableName = "category";
+    }
     
     // getters
     public function getContent() : string{ return $this->content;}

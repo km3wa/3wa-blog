@@ -30,7 +30,11 @@ class articleRepository extends PublicationRepository
         return $this->articleFactory->makeArticleListFromDb($articlesDb);
     }
 
-    public function deleteArticle (int $id){
+    /*public function deleteArticle (int $id){
         parent::deletePublication($id, $this->publicationType);
+    }*/
+    public function deleteArticle(Article $article)
+    {
+        parent::deletePublication($article);
     }
 }
