@@ -13,7 +13,7 @@ class UserRepository
     public function __construct() {
         $mysqlDbConnexion = new MysqlDatabaseConnection();
         $this->dbConnexion = $mysqlDbConnexion->connect();
-        $this->userFactory = new UserFactory();
+        $this->userFactory = new UserFactory(new PasswordHasherStrong);
     }
 
     public function find(string $username, string $pw) : bool{

@@ -3,13 +3,17 @@ require_once(ROOT . "./Model/Entity/User.php");
 
 class UserFactory{
 
+    private $passwordHasher;
 
+    public function __construct(PasswordHasherInterface $pwHasher){
+        $this->passwordHasher = $pwHasher;
+    }
 
     public function createUser($username, $email, $pw) : User{
         $user = new User();
         $user->setUsername($username);
         $user->setEmail($email);
-        $user->setPassword($pw);
+        $user->setPassword($this->passwordHasher->pwHash($pw));
         return $user;
     }
 

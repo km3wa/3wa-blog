@@ -8,9 +8,9 @@ require_once(ROOT . "./Service/Mail.php");
 
 class EntityManager
 {
-    use PasswordHash;
     use Mail;
 
+    private $pwHasher;
     private $db;
     private $dbConnexion;
 
@@ -102,7 +102,7 @@ class EntityManager
         $req->execute(array(
             "username" => $user->getUsername(),
             "email" => $user->getEmail(),
-            "pw" => $this->pwHash($user->getPassword()),
+            "pw" => $user->getPassword(),
             "created_at" => $user->getCreatedAt()->format('Y-m-d H:i:s')
         ));
 
