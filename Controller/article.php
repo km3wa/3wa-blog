@@ -19,5 +19,10 @@ if ($id) {
     $articleScoreCalculator = new ArticleScoreCalculator();
     $articleScore = $articleScoreCalculator->calculateScore($article, $scoresCalculatorsClasses);
 
-    require_once(ROOT . '/View/articleView.php');
+    //require_once(ROOT . '/View/articleView.php');
+
+    echo $twig->render('article.html.twig', [
+        'article' => $article,
+        'articleScore' => $articleScore
+    ]);
 }

@@ -8,4 +8,6 @@ if (!empty($_GET['id'])){
     $categoryRepo->deleteCategory($categoryRepo->findOne($_GET['id']));
 };
 
-include_once(ROOT . './View/deleteCategoryView.php');
+//include_once(ROOT . './View/deleteCategoryView.php');
+
+echo $twig->render('deleteCategory.html.twig', []);

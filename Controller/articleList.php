@@ -20,4 +20,8 @@ $entityManager->persistArticle($article);
 $articleRepo = new ArticleRepository();
 $articles = $articleRepo->findAll();
 
-include_once("../View/articleListView.php");
+//LEGACY include_once("../View/articleListView.php");
+
+echo $twig->render('articleList.html.twig', [
+    'articles' => $articles,
+]);

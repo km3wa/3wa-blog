@@ -8,4 +8,8 @@ if (!empty($_GET['id'])){
 }
 
 
-include_once(ROOT . "./View/categoryView.php");
+//include_once(ROOT . "./View/categoryView.php");
+
+echo $twig->render('category.html.twig', [
+    'category' => $category
+]);

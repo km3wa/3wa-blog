@@ -8,4 +8,5 @@ if (!empty($_GET['id'])){
     $articleRepo->deleteArticle($articleRepo->findOne($_GET['id']));
 };
 
-include_once(ROOT . './View/deleteArticleView.php');
+// include_once(ROOT . './View/deleteArticleView.php');
+echo $twig->render('deleteArticle.html.twig', []);

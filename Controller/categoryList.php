@@ -6,4 +6,8 @@ require_once(ROOT . './Model/Repository/CategoryRepository.php');
 $categoryRepo = new CategoryRepository();
 $categories = $categoryRepo->findAll();
 
-include_once("../View/categoryListView.php");
+//include_once("../View/categoryListView.php");
+
+echo $twig->render('categoryList.html.twig', [
+    'categories' => $categories,
+]);
