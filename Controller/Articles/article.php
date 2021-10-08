@@ -1,5 +1,5 @@
 <?php
-require_once('../Config/config.php');
+require_once('../../Config/config.php');
 
 require_once(ROOT . "/Model/Repository/ArticleRepository.php");
 require_once(ROOT . "/Service/ArticleScoreCalculator.php");

@@ -9,15 +9,15 @@
 </head>
 
 <body>
-</body>
-    ARTICLES
-        {% for article in articles %}
-        * {{article.getTitle()}}
-        * {{article.getContent()}}
-        {% endfor %}
+    <h1>ARTICLES</h1>
+    {% for article in articles %}
+        <h2>{{article.title}}</h2>
+        <article>{{article.content}}</article>
+    {% endfor %}
 
-    CATEGORIES
-        {% for category in categories %}
-        * {{category.getTitle()}}
-        {% endfor %}
+    <h1>CATEGORIES</h1>
+    {% for category in categories %}
+        <h2 style="color:{{category.color}}">{{category.title}}</h2>
+    {% endfor %}
+</body>
 </html>

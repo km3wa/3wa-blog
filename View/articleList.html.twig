@@ -10,9 +10,9 @@
 
 <body>
     {% for article in articles %}
-        <a href="../Controller/article.php?id={{article.getId}}">{{article.getTitle()}}</a>
-        {{article.getContent()}}
-        <a href="../Controller/deleteArticle.php?id={{article.getId}}">supprimer article {{article.getId}}</a>
+        <h2><a href="./article.php?id={{article.getId}}">{{article.getTitle()}}</a></h2>
+        <article>{{article.getContent()}}</article>
+        <a href="./deleteArticle.php?id={{article.getId}}">supprimer article {{article.getId}}</a>
     {% endfor %}
 </body>
 

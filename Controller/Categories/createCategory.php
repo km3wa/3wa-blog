@@ -1,5 +1,5 @@
 <?php
-require_once('../Config/config.php');
+require_once('../../Config/config.php');
 
 require_once(ROOT . "/Model/Factory/CategoryFactory.php");
 //require_once(ROOT . "/View/Legacy/createCategoryView.php");

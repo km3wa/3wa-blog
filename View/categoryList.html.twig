@@ -8,8 +8,8 @@
 </head>
 <body>
     {% for category in categories %}
-        <a style="color: {{category.getColor()}}" href="../Controller/category.php?id={{category.getId()}}">{{category.getTitle()}}</a>
-        <a href="../Controller/deleteCategory.php?id={{category.getId()}}">supprimer catégorie {{category.getId()}}</a>
+        <h2><a style="color: {{category.getColor()}}" href="./category.php?id={{category.getId()}}">{{category.getTitle()}}</a></h2>
+        <div><a href="./deleteCategory.php?id={{category.getId()}}">supprimer catégorie {{category.getId()}}</a></div>
     {% endfor %}
 </body>
 </html>
