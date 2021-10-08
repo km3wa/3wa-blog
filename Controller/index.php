@@ -10,4 +10,9 @@ $articles = $articleRepo->findLasts(3);
 $categoryRepo = new CategoryRepository();
 $categories = $categoryRepo->findLasts(3);
 
-include_once("../View/homeView.php");
+//include_once("../View/homeView.php");
+
+echo $twig->render('index.html.twig', [
+    'articles' => $articles,
+    'categories' => $categories
+]);

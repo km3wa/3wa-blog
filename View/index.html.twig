@@ -1,0 +1,10 @@
+ARTICLES
+    {% for article in articles %}
+    * {{article.getTitle()}}
+    * {{article.getContent()}}
+    {% endfor %}
+
+CATEGORIES
+    {% for category in categories %}
+    * {{category.getTitle()}}
+    {% endfor %}
