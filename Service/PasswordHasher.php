@@ -1,4 +1,5 @@
 <?php
+require_once(ROOT . './Service/PasswordHasherInterface.php');
 /*trait PasswordHash{
     public function pwHash($pw){
         $options = [

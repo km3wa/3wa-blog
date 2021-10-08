@@ -3,7 +3,7 @@
 require_once(ROOT . "./Model/Entity/Article.php");
 require_once(ROOT . "./Model/Entity/EntityInterface.php");
 require_once(ROOT . "./Model/Database/MysqlDatabaseConnection.php");
-require_once(ROOT . "./Service/PasswordHash.php");
+require_once(ROOT . "./Service/PasswordHasherInterface.php");
 require_once(ROOT . "./Service/Mail.php");
 
 class EntityManager

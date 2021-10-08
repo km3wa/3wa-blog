@@ -1,4 +1,6 @@
 <?php
+require_once(ROOT . './Service/PasswordHasherInterface.php');
+
 class PasswordHasherStrong implements PasswordHasherInterface{
     public function pwHash(string $pw) : string{
         $options = [
