@@ -2,7 +2,7 @@
 require_once('../Config/config.php');
 
 require_once(ROOT . "/Model/Factory/ArticleFactory.php");
-require_once(ROOT . "/View/Legacy/createArticleView.php");
+//require_once(ROOT . "/View/Legacy/createArticleView.php");
 require_once(ROOT . "/Model/EntityManager.php");
 
 if(!empty($_POST) && !empty($_POST["title"]) && !empty($_POST["content"])){
@@ -13,4 +13,4 @@ if(!empty($_POST) && !empty($_POST["title"]) && !empty($_POST["content"])){
     $entityManager->persistArticle($article);
 }
 
-
+echo $twig->render('createArticle.html.twig');

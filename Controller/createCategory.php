@@ -2,7 +2,7 @@
 require_once('../Config/config.php');
 
 require_once(ROOT . "/Model/Factory/CategoryFactory.php");
-require_once(ROOT . "/View/Legacy/createCategoryView.php");
+//require_once(ROOT . "/View/Legacy/createCategoryView.php");
 require_once(ROOT . "/Model/EntityManager.php");
 
 if(!empty($_POST) && !empty($_POST["title"]) && !empty($_POST["color"])){
@@ -11,6 +11,6 @@ if(!empty($_POST) && !empty($_POST["title"]) && !empty($_POST["color"])){
 
     $entityManager = new EntityManager();
     $entityManager->persistCategory($category);
+
+    echo $twig->render('createCategory.html.twig');
 }
-
-
